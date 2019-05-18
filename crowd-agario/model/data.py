@@ -1,5 +1,5 @@
 """
-python2.7 data.py --images data/right
+python2.7 data.py --images <dir_of_src_images>
 processes raw footage data to be fed into model
 """
 
@@ -14,7 +14,7 @@ import os
 import shutil
 
 
-def detect_from_image():
+def detect_from_image(target_dir):
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--images", required=True, help="path to images directory")
@@ -25,8 +25,8 @@ def detect_from_image():
     hog.setSVMDetector(cv2.HOGDescriptor_getDefaultPeopleDetector())
 
     # clear generated images w bounding boxes
-    shutil.rmtree('data/out/')
-    os.mkdir('data/out/')
+    shutil.rmtree(target_dir)
+    os.mkdir(target_dir)
 
     # loop over the image paths
     for imagePath in paths.list_images(args["images"]):
@@ -34,9 +34,12 @@ def detect_from_image():
         # load the image and resize it to (1) reduce detection time
         # and (2) improve detection accuracy
         image = cv2.imread(imagePath)
+
+        # flip the image
         # flipped = cv2.flip(image, flipCode=-1)
         # image = flipped
         # cv2.imwrite('flipped-{}'.format(os.path.basename(imagePath)), image)
+
         image = imutils.resize(image, width=min(1000, image.shape[1]))
         orig = image.copy()
 
@@ -57,8 +60,8 @@ def detect_from_image():
         # draw the final bounding boxes
         for (xA, yA, xB, yB) in pick:
             cv2.rectangle(image, (xA, yA), (xB, yB), (0, 255, 0), 2)
-            cv2.imwrite('data/out/original-{}'.format(os.path.basename(imagePath)), orig)
-            cv2.imwrite('data/out/post-nms-{}'.format(os.path.basename(imagePath)), image)
+            cv2.imwrite(os.path.join(target_dir, 'original-{}'.format(os.path.basename(imagePath))), orig)
+            cv2.imwrite(os.path.join(target_dir, 'post-nms-{}'.format(os.path.basename(imagePath))), image)
 
         # show some information on the number of bounding boxes
         filename = imagePath[imagePath.rfind("/") + 1:]
@@ -92,7 +95,7 @@ def extract_images_from_video(src, target):
 
 def main():
     # extract_images_from_video('data/right.MOV', 'data/right/')
-    detect_from_image()
+    detect_from_image('data/out/')
     pass
 
 
