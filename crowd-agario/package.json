@@ -3,9 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "ajax": "0.0.4",
+    "customize-cra": "^0.2.12",
+    "mobx": "^5.9.4",
+    "mobx-react": "^5.4.4",
     "react": "^16.8.6",
+    "react-app-rewired": "^2.1.3",
     "react-dom": "^16.8.6",
-    "react-json-view": "^1.19.1",
     "react-scripts": "3.0.1",
     "recharts": "^1.6.0"
   },

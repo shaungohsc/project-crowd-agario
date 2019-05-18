@@ -1,8 +1,14 @@
 import React from 'react';
 import './App.css';
 import CrowdChart from './CrowdChart';
+import CoordinateStore from './CoordinateStore';
 
-function App() {
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
   return (
     <div className="App">
       <header className="App-header">
@@ -19,10 +25,11 @@ function App() {
         </a>
       </header>
       <body className="App-body">
-        <CrowdChart/>
+        <CrowdChart coordinateStore={this.props.coordinateStore}/>
       </body>
     </div>
   );
+  }
 }
 
 export default App;
