@@ -1,24 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import CrowdChart from './CrowdChart';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
         <a
-          className="App-link"
-          href="https://reactjs.org"
+          className="Crowd Agario"
+          href="https://agar.io/"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          CROWD AGARIO - Crowd Visualisation and Analytics
         </a>
       </header>
+      <body className="App-body">
+        <CrowdChart/>
+      </body>
     </div>
   );
 }
