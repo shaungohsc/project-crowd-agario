@@ -9,8 +9,8 @@
 }
 
 .App-header {
-  background-color: #ffffff;
-  min-height: 10vh;
+  background-color: #504aa5;
+  min-height: 6vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,15 +20,60 @@
 }
 
 .App-body {
+  background-color: #f0efff;
+  min-height: 88vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: rows;
+  align-items: flex;
+  justify-content: center;
+}
+
+.live-crowd-data {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #8884D8;
+  display: fixed;
+  height: 80vh;
+  width: 40vw;
+  flex-direction: rows !important;
   align-items: center;
   justify-content: center;
+}
+
+.crowd-counter {
+  align-self: center;
+  vertical-align: bottom
+}
+
+.historic-crowd-data {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #8884D8;
+  display: fixed;
+  height: 80vh;
+  width: 40vw;
+  flex-direction: rows !important;
+  justify-content: right;
 }
 
 .App-link {
   color: #61dafb;
 }
+
+.crowd-chart {
+  height: 600px;
+  width: 1000px;
+  align-self: left;
+}
+
+.trend-chart {
+  height: 600px;
+  width: 1000px;
+
+  align-self: right;
+}
+
+
 
 @keyframes App-logo-spin {
   from {

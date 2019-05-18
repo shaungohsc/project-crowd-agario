@@ -17,7 +17,7 @@ class CrowdChart extends Component{
 	render () {
   	return (
       <div>
-    	<ScatterChart width={470} height={470} margin={{top: 10, right: 10, bottom: 10, left: 10}}>
+    	<ScatterChart width={500} height={500} margin={{top: 20, right: 20, bottom: 20, left: 20}}>
       	<CartesianGrid strokeDasharray="3 3"/>
             <XAxis domain={[0, 400]} dataKey={'x'} type="number" name='x-dim' unit='cm'/>
             <YAxis domain={[0, 400]} dataKey={'y'} type="number" name='y-dim' unit='cm'/>
@@ -26,7 +26,7 @@ class CrowdChart extends Component{
         <Scatter name='A school' data={this.props.store.coordList} fill='#8884d8'/>
       	<Tooltip cursor={{strokeDasharray: '3 3'}}/>
       </ScatterChart>
-         <button onClick={this.props.update}> - </button>
+         <button onClick={this.props.update}> Update </button>
       </div> 
     );
   }
