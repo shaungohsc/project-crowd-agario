@@ -1,11 +1,28 @@
 import React from 'react';
 import './App.css';
 import CrowdChart from './CrowdChart';
-import CoordinateStore from './CoordinateStore';
+import { NewCoord1, NewCoord2 } from './NewCoord';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      coordList: NewCoord1.coordList
+    };
+
+    this.updateCoordList = this.updateCoordList.bind(this);
+  }
+
+  fetch() {
+    // fetches x,y json data once every 1000 ms
+    console.log('hihi')
+  }
+
+  updateCoordList() {
+    console.log('bears')
+    this.setState({
+      coordList: NewCoord2.coordList
+    });
   }
 
   render() {
@@ -21,12 +38,11 @@ class App extends React.Component {
           target="_blank"
           rel="noopener noreferrer"
         >
-          CROWD AGARIO - Crowd Visualisation and Analytics
         </a>
       </header>
-      <body className="App-body">
-        <CrowdChart coordinateStore={this.props.coordinateStore}/>
-      </body>
+      <div className="App-body">
+        <CrowdChart store={this.state} update={this.updateCoordList} />
+      </div>
     </div>
   );
   }
