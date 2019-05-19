@@ -32,6 +32,7 @@ class TrendChart extends React.Component {
     }
 
   render() {
+    if (this.state.data.length > 0) {
     return (
       <AreaChart
         width={510}
@@ -58,6 +59,14 @@ class TrendChart extends React.Component {
         <Area type="monotone" dataKey="people" fillOpacity={1} fill="url(#colorUv)"/>
       </AreaChart>
     );
+    }
+    return (
+        <AreaChart
+            width={510}
+            height={300}
+            data={[]}
+        ></AreaChart>
+    )
   }
 }
 

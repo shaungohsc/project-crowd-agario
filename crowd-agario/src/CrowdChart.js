@@ -19,8 +19,8 @@ class CrowdChart extends Component{
       <div>
     	<ScatterChart width={460} height={400} margin={{top: 20, right: 0, bottom: 0, left: 60}}>
       	<CartesianGrid strokeDasharray="3 3"/>
-            <XAxis domain={[0, 400]} dataKey={'x'} type="number" name='x-dim' unit='cm'/>
-            <YAxis domain={[0, 400]} dataKey={'y'} type="number" name='y-dim' unit='cm'/>
+            <XAxis domain={[0, 800]} dataKey={'x'} type="number" name='x-dim' unit='cm'/>
+            <YAxis domain={[0, 1200]} dataKey={'y'} type="number" name='y-dim' unit='cm'/>
 
         <Tooltip cursor={{ strokeDasharray: '3 3' }} />
         <Scatter name='A school' data={this.props.store.coordList} fill='#8884d8'/>

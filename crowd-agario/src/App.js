@@ -11,12 +11,13 @@ class App extends React.Component {
     this.state = {
       coordList: DummyCoord.coordArr[0],
       coordListList: DummyCoord.coordArr,
-      index: 0
+      index: 0,
+      maxlen: DummyCoord.coordArr.length
     };
 
     this.updateCoordList = this.updateCoordList.bind(this);
-    this.fetch = this.fetch.bind(this);
-    this.maxCount = this.peakCount.bind(this);
+    // this.fetch = this.fetch.bind(this);
+    this.peakCount = this.peakCount.bind(this);
     this.averageCount = this.averageCount.bind(this);
   }
 
@@ -27,10 +28,15 @@ class App extends React.Component {
          coordListList: coordListList
        });
    
+       console.log()
        this.timer = setInterval(
         () => {
-          this.setState({index: this.state.index++});
-          this.setState({coordList: DummyCoord.coordArr[this.state.index]})
+
+          if(this.state.index < this.state.maxlen-1) {
+            this.setState((prevState) => ({index: prevState.index + 1 }));
+            this.setState({coordList: DummyCoord.coordArr[this.state.index]});
+          }
+
          }, 
         500
       );
@@ -40,22 +46,22 @@ class App extends React.Component {
     clearInterval(this.timer);
   }
 
-  fetch() {
-    // fetches x,y json data once every 1000 ms
-    var coordListList = DummyCoord.coordArr;
-    this.setState({
-      coordListList: coordListList
-    });
+  // fetch() {
+  //   // fetches x,y json data once every 1000 ms
+  //   var coordListList = DummyCoord.coordArr;
+  //   this.setState({
+  //     coordListList: coordListList
+  //   });
 
-    for(var i = 0; i<coordListList.length; i++){
-      let k = i;
-      setTimeout(() => {
-        console.log(k);
-        var coordList = coordListList[k];
-        this.updateCoordList(coordList);
-      }, 700 * (k + 1));
-  }
-  }
+  //   for(var i = 0; i<coordListList.length; i++){
+  //     let k = i;
+  //     setTimeout(() => {
+  //       console.log(k);
+  //       var coordList = coordListList[k];
+  //       this.updateCoordList(coordList);
+  //     }, 700 * (k + 1));
+  // }
+  // }
 
   updateCoordList(updatedList) {
     this.setState({
@@ -98,14 +104,14 @@ averageCount = () => {
       </header>
       <div className="App-body">     
         <div className="crowd-data">
-          <CrowdChart className="crowd-chsart" store={this.state} update={this.fetch} />
+          <CrowdChart className="crowd-chart" store={this.state} />
           <p className="crowd-counter">Current human traffic: {this.state.coordList.length} humans </p>
         </div>
     
         <div className="crowd-data">
           <TrendChart className="trend-chart" coordListList={this.state.coordListList}/>
           <p className="crowd-counter">Peak human traffic: {this.peakCount()} humans </p>
-          <p className="crowd-counter">Average human traffic: {this.averageCount()} humans </p>
+          <p className="crowd-counter">Mean human traffic: {this.averageCount()} humans </p>
         </div>
 
         <div>
